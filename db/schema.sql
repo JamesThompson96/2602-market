@@ -14,16 +14,16 @@ table orders (
   id serial primary key,
   date date not null,
   note text,
-  user_id int not null
+  user_id int not null references user(id) on delete cascade
 )
 
 table orders_products (
-  order_id int [not null]
-  product_id int [not null]
-  quantity int [not null]
+  order_id int not null,
+  product_id int not null,
+  quantity int not null,
 
   indexes {
-    (order_id, product_id) [pk]
+    (order_id, product_id) primary key,
   }
 )
 
@@ -32,4 +32,5 @@ table products (
   title text not null,
   description text not null,
   price decimal not null,
+  products_id int not null references products(id) on delete cascade
 )
