@@ -14,7 +14,7 @@ table orders (
   id serial primary key,
   date date not null,
   note text,
-  user_id int not null references user(id) on delete cascade
+  user_id int not null references users(id) on delete cascade
 )
 
 table orders_products (
