@@ -2,7 +2,7 @@ import db from "#db/client";
 
 export async function createUser(name) {
   const sql = `
-    insert into tracks
+    insert into products
         (name)
     values
         ($1, $2)

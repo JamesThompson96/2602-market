@@ -4,20 +4,20 @@ drop table if exists orders;
 drop table if exists orders_products;
 drop table if exists products;
 
-table users (
+create table users (
   id serial primary key,
   username text unique not null,
   password text not null
 )
 
-table orders (
+create table orders (
   id serial primary key,
   date date not null,
   note text,
   user_id int not null references users(id) on delete cascade
 )
 
-table orders_products (
+create table orders_products (
   order_id int not null,
   product_id int not null,
   quantity int not null,
@@ -27,7 +27,7 @@ table orders_products (
   }
 )
 
-table products (
+create table products (
   id serial primary key,
   title text not null,
   description text not null,

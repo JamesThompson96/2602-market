@@ -2,7 +2,7 @@ import db from "#db/client";
 
 export async function createProductOrder(productId, orderId) {
   const sql = `
-  INSERT INTO products_orders
+  INSERT INTO orders_products
     (product_id, order_id)
   VALUES
     ($1, $2)
