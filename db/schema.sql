@@ -1,13 +1,20 @@
 -- TODO
-drop table if exists users;
-drop table if exists orders;
 drop table if exists orders_products;
+drop table if exists orders;
+drop table if exists users;
 drop table if exists products;
 
 create table users (
   id serial primary key,
   username text unique not null,
   password text not null
+);
+
+create table products (
+  id serial primary key,
+  title text not null,
+  description text not null,
+  price decimal not null
 );
 
 create table orders (
@@ -18,19 +25,8 @@ create table orders (
 );
 
 create table orders_products (
-  order_id int not null,
-  product_id int not null,
+  order_id int not null references orders(id) on delete cascade,
+  product_id int not null references products(id) on delete cascade,
   quantity int not null,
-
-  indexes {
-    (order_id, product_id) primary key,
-  }
-);
-
-create table products (
-  id serial primary key,
-  title text not null,
-  description text not null,
-  price decimal not null,
-  products_id int not null references products(id) on delete cascade
+  primary key (order_id, product_id)
 );
